@@ -1,8 +1,5 @@
 //Program 2 first lab Date: 2023/07/17
 
-
-
-
 //program to search an elememt in 2d ARRAY
 
 #include <stdio.h>
