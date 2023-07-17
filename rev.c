@@ -1,3 +1,6 @@
+//Program 1 first lab Date: 2023/07/17
+
+
 //Program to reverse a number using pointer 
 
 #include <stdio.h>
