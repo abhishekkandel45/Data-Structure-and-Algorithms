@@ -16,7 +16,7 @@ int main() {
     }
 
     // Insertion Sort Algorithm
-    for (j = 2; j < n; j++) {
+    for (j = 1; j < n; j++) {
         key = A[j];
         i = j - 1;
         while (i >= 0 && A[i] > key) {
