@@ -4,7 +4,7 @@
 #include  <stdio.h>
 #include  <stdlib.h>
 
-#define MAX 10
+#define MAX 100
 
 void merge(int A[], int p,int q, int r);  //  This array is used to merge the array
 void mergeSort(int A[], int p, int r);  //  This array is used to sort the array
@@ -99,4 +99,34 @@ void printArray(int A[], int size)
     }
 
     printf("\n");
+}
+
+
+
+//Driver code
+int main()
+{
+    int A[MAX] = { 0 };
+    int i = 0;
+    int size = 0;
+
+    printf("Enter the size of the array: ");
+    scanf("%d", &size);
+
+    printf("Enter the elements of the array: ");
+
+    for (i = 0; i < size; i++)
+    {
+        scanf("%d", &A[i]);
+    }
+
+    printf("The array before sorting: ");
+    printArray(A, size);
+
+    mergeSort(A, 0, size - 1);
+
+    printf("The array after sorting: ");
+    printArray(A, size);
+
+    return 0;
 }
