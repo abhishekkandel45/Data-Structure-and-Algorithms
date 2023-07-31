@@ -1,10 +1,13 @@
+
+
+//EXP 
 //  Merge Sort
 //Date :31/07/2023
 
 #include  <stdio.h>
 #include  <stdlib.h>
 
-#define MAX 100
+#define MAX 100      //  This is the maximum size of the array
 
 void merge(int A[], int p,int q, int r);  //  This array is used to merge the array
 void mergeSort(int A[], int p, int r);  //  This array is used to sort the array
