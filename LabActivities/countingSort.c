@@ -28,10 +28,10 @@ void countingSort(int arr[], int n)
 
 //Finding the index of each element of the original array in count array and placing the elements in output array
     int output[n];
-    for (i = n - 1; i >= 0; i--)
+    for (i = n - 1; i >= 0; i--)            //Iterating from n - 1 to 0
     {
         output[count[arr[i]] - 1] = arr[i];
-        count[arr[i]]--;
+        count[arr[i]]--;                //Decreasing the count by 1
     }
 
 //After placing each element at its correct position, decrease its count by 1
