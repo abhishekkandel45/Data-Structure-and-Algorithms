@@ -19,8 +19,8 @@ void countingSort(int arr[], int n)
         count[i] = 0;
 
 //Storing the count of each element at their respective index in count array
-    for (i = 0; i < n; i++)
-        count[arr[i]]++;
+    for (i = 0; i < n; i++) //Iterating through the array
+        count[arr[i]]++;  //Incrementing the count of that element
 
 //Storing the cumulative count of each array
     for (i = 1; i < max + 1; i++)
