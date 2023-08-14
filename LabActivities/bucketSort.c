@@ -5,7 +5,7 @@ Date: Aug 14, 2023
 #include <stdio.h>
 #include <stdlib.h>
 
-#define MAX 15 
+#define MAX 100
 
 // Function Prototypes 
 void bucketSort(int array[], int n);    // Bucket Sort Algorithm
@@ -13,7 +13,7 @@ void printArray(int array[], int n);    // Print Array
 
 //Function Definitions for Bucket Sort Algorithm
 void bucketSort(int array[], int n) {
-    int i, j, k, buckets[MAX];             
+    int i, j, k, buckets[MAX];                  //The total number of buckets is equal to the maximum element of the array
     for (i = 0; i < MAX; ++i) {             // Initialize Buckets
         buckets[i] = 0;
     }
