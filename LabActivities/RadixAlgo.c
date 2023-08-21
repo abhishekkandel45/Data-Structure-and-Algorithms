@@ -8,7 +8,7 @@
 int findMax(int arr[], int n);
 void radixSort(int arr[], int n);
 void printArray(int arr[], int n);
-
+//Function Definitions
 void findMax(int arr[], int n)
 {
     int max = arr[0];
