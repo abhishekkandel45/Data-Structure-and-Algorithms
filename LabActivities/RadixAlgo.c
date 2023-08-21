@@ -31,40 +31,35 @@ void radixSort(int arr[], int n)
         count++;
         m = m / 10;
     }
-
-    //create a 2D array of size 10 * n (n is the number of elements in the array) to store the elements in static memory
-    int np[10][10];
-    int np_count[10];
-
-    //initialise the 2D array with 0's
-    for (i = 0; i < 10; i++)
-    {
-        np_count[i] = 0;
-        for (j = 0; j < 10; j++)
-            np[i][j] = 0;
-    }
-
-    //loop through the number of digits in the maximum number
+    
+    // making  all the Number to have same number of digits
     for (i = 0; i < count; i++)
     {
-        //loop through the number of elements in the array
+        int bucket[10][10] = {0};              // This bucket is used for storing the elements
+        int bucket_count[10] = {0};            // This bucket_count is used for storing the count of elements in each bucket
         for (j = 0; j < n; j++)
         {
-            //find the index of the element to be stored in the 2D array
-            index = (arr[j] / p) % 10;
-            //store the element in the 2D array at the found index and increment the count at that index
-            np[index][np_count[index]] = arr[j];
-            np_count[index] += 1;
+            index = (arr[j] / p) % 10;                     //finding the index of the bucket
+            bucket[index][bucket_count[index]] = arr[j];  //inserting the element into the bucket
+            bucket_count[index] += 1;                     //incrementing the bucket count
         }
-        //loop through the 2D array
-      
-        //increment the power of 10
-        p = p * 10;
-        //reset the count of elements at each index to 0
+        //sorting the elements according to the digits
+        index = 0;
         for (j = 0; j < 10; j++)
-            np_count[j] = 0;
+        {
+            for (int k = 0; k < bucket_count[j]; k++)
+            {
+                arr[index] = bucket[j][k];
+                index++;
+            }
+        }
+        p = p * 10;
     }
 }
+
+
+
+
 
 void printArray(int arr[], int n)
 {
