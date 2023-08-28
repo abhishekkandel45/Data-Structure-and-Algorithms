@@ -70,8 +70,6 @@ void printArray(int arr[], int n)
 
 
 
-
-
 //Driver Code
 int main()
 {
