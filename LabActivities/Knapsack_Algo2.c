@@ -42,7 +42,17 @@ int main()
         printf("Item %d: ", i + 1);
         scanf("%d %d", &arr[i].value, &arr[i].weight);
     }
-    qsort(arr, n, sizeof(arr[0]), compare);
+    qsort(arr, n, sizeof(arr[0]), compare);      // Sort the items by value/weight ratio
+
+//Printitng the items sorted by value/weight ratio with their value and weight
+//Tabular format
+    printf("Items sorted by value/weight ratio: \n");
+    printf("Item\tValue\tWeight\tValue/Weight\n");
+    for (int i = 0; i < n; i++)
+    {
+        printf("%d\t%d\t%d\t%lf\n", i + 1, arr[i].value, arr[i].weight, (double)arr[i].value /  (double)arr[i].weight);
+    }
+
     int curWeight = 0;
     double finalvalue = 0.0;
     for (int i = 0; i < n; i++)
@@ -58,6 +68,8 @@ int main()
             finalvalue += arr[i].value * ((double)remain / (double)arr[i].weight);
             break;
         }
+
+
     }
     printf("Maximum value we can obtain = %lf\n", finalvalue);
     return 0;
