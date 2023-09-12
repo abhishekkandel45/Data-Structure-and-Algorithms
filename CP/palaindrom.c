@@ -16,6 +16,5 @@ void isPalindrome(int n){
     }
     if (n==rev)
     {
-        return "Palindrome"
-
+        return "Palindrome" 
         

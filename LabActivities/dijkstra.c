@@ -15,7 +15,8 @@ struct Graph {
 struct Graph *adjMatrixOfGraph();
 void printAdjMatrix(struct Graph *G);   //print tjhe adjacency matrix of the graph
 void dijkstra(struct Graph *G, int s); // find shortest paths from source s to all other vertices
-
+ 
+ 
 int main() {
     struct Graph *G = adjMatrixOfGraph();
     printAdjMatrix(G);
