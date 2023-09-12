@@ -17,7 +17,7 @@ int main()
     int max = arr[0];
     int sum = 0;
     for (int i = 0; i < size; i++) {
-        sum += arr[i];
+        sum = sum + arr[i];
         if (sum > max) {
             max = sum;
         }
@@ -28,3 +28,6 @@ int main()
     printf("The maximum sum of the subarray is: %d\n", max);
     return 0;
 }
+
+
+

@@ -16,6 +16,7 @@ void find_duplicate(int *arr, int size)
 }
 
 
+
 int main()
 {
     printf ("Enter the size of the array: ");
@@ -28,5 +29,5 @@ int main()
     }
     find_duplicate(arr, size);
     return 0;
-    
+
 }
