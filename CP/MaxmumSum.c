@@ -21,7 +21,6 @@ int max_sum(int *arr, int size)
     }
 }
 
-
 //Driver Code
 
 int main()
