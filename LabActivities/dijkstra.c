@@ -6,103 +6,97 @@
 #include <limits.h>
 #include <stdlib.h>
 
-struct Graph {
-    int V;     // number of vertices
-    int E;    // number of edges
-    int **Adj; // adjacency matrix
+struct Graph
+{
+    int V;
+    int E;
+    int **adj; // 2D array
 };
 
-struct Graph *adjMatrixOfGraph();
-void printAdjMatrix(struct Graph *G);   //print tjhe adjacency matrix of the graph
-void dijkstra(struct Graph *G, int s); // find shortest paths from source s to all other vertices
- 
- 
-int main() {
-    struct Graph *G = adjMatrixOfGraph();
-    printAdjMatrix(G);
-    dijkstra(G, 0);
-    return 0;
-}
-
-struct Graph *adjMatrixOfGraph() 
+struct Graph *adjMatrixofGraph()
 {
-    int i, u, v, w;
+    int u, v, w;
     struct Graph *G = (struct Graph *)malloc(sizeof(struct Graph));
-    if (!G) {
-        printf("Memory Error");    
+    if (!G)
+    {
+        printf("Memory Error");
         return NULL;
     }
     printf("Enter number of vertices and edges: ");
     scanf("%d%d", &G->V, &G->E);
-    G->Adj = (int **)malloc(sizeof(int *) * G->V);
-    for (i = 0; i < G->V; i++)
-        G->Adj[i] = (int *)malloc(sizeof(int) * G->V);
-    for (u = 0; u < G->V; u++)
-        for (v = 0; v < G->V; v++)
-            G->Adj[u][v] = 0;
+    G->adj = (int **)malloc(sizeof(int *) * G->V);
+    for (int i = 0; i < G->V; i++)
+    {
+        G->adj[i] = (int *)malloc(sizeof(int) * G->V);
+        for (int j = 0; j < G->V; j++)
+            G->adj[i][j] = 0;
+    }
     printf("Enter %d edges with weights:\n", G->E);
-    for (i = 0; i < G->E; i++) {
-        scanf("%d%d%d", &u, &v, &w);   // edge (u, v) with weight w 
-        G->Adj[u][v] = w;
-        G->Adj[v][u] = w;
+    for (int i = 0; i < G->E; i++)
+    {
+        scanf("%d%d%d", &u, &v, &w);
+        G->adj[u][v] = w;
+        G->adj[v][u] = w;
     }
     return G;
 }
 
-void printAdjMatrix(struct Graph *G) 
+void printMatrix(struct Graph *G)
 {
-    int u, v;
-    for (u = 0; u < G->V; u++) {
-        for (v = 0; v < G->V; v++)
-            printf("%d ", G->Adj[u][v]);
+    printf("Adjacency Matrix:\n");
+    for (int i = 0; i < G->V; i++)
+    {
+        for (int j = 0; j < G->V; j++)
+            printf("%d ", G->adj[i][j]);
         printf("\n");
     }
 }
 
-void dijkstra(struct Graph *G, int s) 
+int findMinVertex(int *distance, int *visited, int n)
 {
-    int i, j, u, v, min;
-    int *distance = (int *)malloc(sizeof(int) * G->V);
-    int *visited = (int *)malloc(sizeof(int) * G->V);
-    int *path = (int *)malloc(sizeof(int) * G->V);
-    for (i = 0; i < G->V; i++) {
-        distance[i] = INT_MAX;
-        visited[i] = 0;
-        path[i] = -1;
+    int minVertex = -1;
+    for (int i = 0; i < n; i++)
+    {
+        if (!visited[i] && (minVertex == -1 || distance[i] < distance[minVertex]))
+            minVertex = i;
     }
-    distance[s] = 0;
-    for (i = 0; i < G->V; i++) {
-        min = INT_MAX;
-        for (j = 0; j < G->V; j++) {
-            if (!visited[j] && distance[j] < min) {
-                min = distance[j];
-                u = j;
-            }
-        }
-        visited[u] = 1;
-        for (v = 0; v < G->V; v++) {
-            if (!visited[v] && G->Adj[u][v] && distance[u] != INT_MAX && distance[u] + G->Adj[u][v] < distance[v]) {
-                distance[v] = distance[u] + G->Adj[u][v];
-                path[v] = u;
-            }
-        }
-    }
-    printf("Shortest paths from source vertex %d:\n", s);
-    for (i = 0; i < G->V; i++) {
-        if (distance[i] == INT_MAX)
-            printf("%d -> %d = %s\n", s, i, "INF");
-        else {
-            printf("%d -> %d = %d\tPath: %d", s, i, distance[i], i);
-            j = i;
-            while (path[j] != -1) {
-                printf(" <- %d", path[j]);
-                j = path[j];
-            }
-            printf("\n");
-        }
-    }
+    return minVertex;
 }
 
 
+void dijkstra(struct Graph *G, int src)
+{
+    int *distance = (int *)malloc(sizeof(int) * G->V);
+    int *visited = (int *)malloc(sizeof(int) * G->V);
+    for (int i = 0; i < G->V; i++)
+    {
+        distance[i] = INT_MAX;
+        visited[i] = 0;
+    }
+    distance[src] = 0;
+    for (int i = 0; i < G->V - 1; i++)
+    {
+        int minVertex = findMinVertex(distance, visited, G->V);
+        visited[minVertex] = 1;
+        for (int j = 0; j < G->V; j++)
+        {
+            if (G->adj[minVertex][j] != 0 && !visited[j])
+            {
+                int dist = distance[minVertex] + G->adj[minVertex][j];
+                if (dist < distance[j])
+                    distance[j] = dist;
+            }
+        }
+    }
+    printf("Shortest distances from source vertex %d:\n", src);
+    for (int i = 0; i < G->V; i++)
+        printf("Vertex %d: %d\n", i, distance[i]);
+}
 
-
+int main()
+{
+    struct Graph *G = adjMatrixofGraph();
+    printMatrix(G);
+    dijkstra(G, 0);
+    return 0;
+}
