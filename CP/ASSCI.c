@@ -21,3 +21,67 @@ PrepInsta
 
 */
 
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+
+int main()
+{
+    char str[100000];
+    scanf("%s",str);
+    int len=strlen(str);
+    int i=0;
+    int j=len-1;
+    while(i<j)
+    {
+        char temp=str[i];
+        str[i]=str[j];
+        str[j]=temp;
+        i++;
+        j--;
+    }
+    int k=0;
+    while(k<len)
+    {
+        if(str[k]=='1')
+        {
+            int num=(str[k]-'0')*100+(str[k+1]-'0')*10+(str[k+2]-'0');
+            if(num>=65 && num<=90)
+            {
+                printf("%c",num);
+            }
+            else if(num>=97 && num<=122)
+            {
+                printf("%c",num);
+            }
+            else if(num==32)
+            {
+                printf("%c",num);
+            }
+            k=k+3;
+        }
+        else
+        {
+            int num=(str[k]-'0')*10+(str[k+1]-'0');
+            if(num>=65 && num<=90)
+            {
+                printf("%c",num);
+            }
+            else if(num>=97 && num<=122)
+            {
+                printf("%c",num);
+            }
+            else if(num==32)
+            {
+                printf("%c",num);
+            }
+            k=k+2;
+        }
+    }
+    return 0;
+}
+
+
+
+
+
