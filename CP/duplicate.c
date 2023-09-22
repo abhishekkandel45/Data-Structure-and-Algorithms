@@ -13,7 +13,7 @@ void find_duplicate(int *arr, int size)
             }
         }
     }
-}
+} 
 
 
 
