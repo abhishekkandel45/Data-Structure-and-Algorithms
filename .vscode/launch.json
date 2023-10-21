@@ -2,6 +2,13 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "java",
+            "name": "fizbuzzopt",
+            "request": "launch",
+            "mainClass": "fizbuzzopt",
+            "projectName": "Data-Structure-and-Algorithms_9ef13b3e"
+        },
+        {
             "name": "(lldb) Attach",
             "type": "cppdbg",
             "request": "attach",
